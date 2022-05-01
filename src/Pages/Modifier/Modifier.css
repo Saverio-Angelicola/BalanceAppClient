@@ -1,0 +1,28 @@
+.main-m {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 300px 0px 90px 0px;
+  background: url("../../assets/img/AdminBackground.jpg");
+  background-size: cover;
+  height: 100%;
+  padding-bottom: 400px;
+}
+
+.box-m {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  width: 800px;
+  box-shadow: 11px 12px 13px rgb(207, 207, 207);
+  padding-top: 10px;
+  padding: center;
+  border-radius: 60px;
+  background-color: rgb(211, 211, 211);
+  display: inline-block;
+}
+
+.title-m {
+  margin-top: 0px;
+  margin-right: 0px;
+}

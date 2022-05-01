@@ -1,0 +1,26 @@
+.main-s {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 20px 0px 0px 0px;
+  background: url("../../assets/img/DoctorBackground.jpg");
+  background-size: cover;
+  padding-bottom: 400px;
+}
+
+.box-s {
+  height: 700px;
+  width: 1400px;
+  box-shadow: 11px 12px 13px black;
+  padding-top: 10px;
+  border-radius: 60px;
+  background-color: lightgrey;
+}
+
+.graph {
+  margin-left: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}

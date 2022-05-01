@@ -1,0 +1,79 @@
+caption {
+  caption-side: top;
+  font-size: 50px;
+}
+
+table {
+  background-color: rgb(211, 211, 211);
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 90%;
+  margin: auto;
+}
+
+td, th /* Mettre une bordure sur les td ET les th */ {
+  font-size: 18px;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(5) {
+  width: 35%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(6) {
+  width: 35%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+thead th:nth-child(7) {
+  width: 35%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+.btn-block-tm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.voir-button-tm {
+  width: auto;
+  height: 50px;
+  border-radius: 60px;
+  background-color: lightblue;
+  color: white;
+  font-size: 20px;
+  margin-right: 5px;
+  border: none;
+  padding: auto;
+}

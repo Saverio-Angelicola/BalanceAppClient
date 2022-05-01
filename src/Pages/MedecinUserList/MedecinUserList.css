@@ -1,0 +1,8 @@
+.main-mu {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  background: url("../../assets/img/DoctorBackground.jpg");
+  height: 1000px;
+  padding-bottom: 400px;
+}
