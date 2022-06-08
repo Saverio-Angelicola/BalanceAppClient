@@ -2,14 +2,14 @@
   text-align: center;
   justify-content: center;
   display: flex;
-  padding: 300px 0 90px 0;
   background: url("../../assets/img/Background.jpg");
   background-size: cover;
 }
 
 .box-l {
-  height: 540px;
-  width: 400px;
+  margin: 5% 0;
+  padding: 5% 0;
+  width: 33%;
   box-shadow: 11px 12px 13px rgb(207, 207, 207);
   border-radius: 60px;
   background-color: white;

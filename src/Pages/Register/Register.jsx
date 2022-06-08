@@ -40,8 +40,9 @@ const Register = () => {
   };
   return (
     <div className="main-r">
-      <p>{errorMessage}</p>
       <form className="box-r" onSubmit={handleSubmit}>
+        <h2>Inscription</h2>
+        <p>{errorMessage}</p>
         <input
           type="text"
           placeholder="Prénom"

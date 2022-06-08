@@ -4,9 +4,15 @@
 }
 
 .box-r {
-  background-color: #fff;
   display: flex;
   flex-direction: column;
+  box-shadow: 11px 12px 13px rgb(207, 207, 207);
+  border-radius: 60px;
+  background-color: white;
+}
+
+.box-r input{
+  margin-left: 12%;
 }
 
 .name-r {
@@ -16,4 +22,5 @@
 
 .button-r {
   background-color: #ff0000;
+  margin-left: 12%;
 }
