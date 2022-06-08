@@ -1,61 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
 import "./FormLogin.css";
-import { getRole, login } from "../../services/Auth";
+import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      navigate("/stat");
-    }
-  });
-
-  const handleChange = (event) => {
-    switch (event.target.name) {
-      case "email":
-        setEmail(event.target.value);
-        break;
-      case "password":
-        setPassword(event.target.value);
-        break;
-      default:
-        break;
-    }
-  };
+  const auth = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       setErrorMessage("Connexion en cours...");
-      await login(email,password);
-      setErrorMessage("");
-      setEmail("");
-      setPassword("");
-      setErrorMessage("");
-        const userRole = await getRole();
-        if(userRole === "Admin")
-        {
-          navigate("/admin")
-        }
-        else if (userRole === "Doctor")
-        {
-          navigate("/medecin")
-        }
-        else
-        {
-          navigate("/stat")
-        }
+      await auth.signin(email, password);
     } catch (err) {
       setErrorMessage("Email ou mot de passe invalide!");
-      setEmail("");
-      setPassword("");
     }
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -67,7 +30,7 @@ const FormLogin = () => {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={handleChange}
+            onChange={(event) => setEmail(event.target.value)}
             name="email"
             className="name-l"
             required
@@ -78,7 +41,7 @@ const FormLogin = () => {
             type="password"
             placeholder="Mot de passe"
             value={password}
-            onChange={handleChange}
+            onChange={(event) => setPassword(event.target.value)}
             name="password"
             className="name-l"
             required
@@ -89,6 +52,8 @@ const FormLogin = () => {
             Connexion
           </button>
         </div>
+        <br />
+        <p>Pas de compte ? <Link to="/inscription">Inscrivez-vous</Link> </p>
       </form>
     </div>
   );

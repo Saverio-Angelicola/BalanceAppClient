@@ -1,28 +1,42 @@
 import axios from "axios";
 
-export const login = async (email, password) => {
-  const token = (
-    await axios.post("https://localhost:49157/api/auth/login", {
-      email: email,
-      password: password,
-    })
-  ).data.token;
-  localStorage.setItem("jwt", token);
+export const registerUser = async (user) => {
+  return (
+    await axios.post(
+      "https://balance-app-blaise-pascal.herokuapp.com/api/auth/register",
+      user
+    )
+  ).data.email;
 };
 
-export const getRole = async () => {
+export const login = async (email, password) => {
+  return (
+    await axios.post(
+      "https://balance-app-blaise-pascal.herokuapp.com/api/auth/login",
+      {
+        email: email,
+        password: password,
+      }
+    )
+  ).data.token;
+};
+
+export const getProfile = async () => {
   const token = localStorage.getItem("jwt");
   if (!token) {
     throw new Error();
   }
 
   return (
-    await axios.get("https://localhost:49157/api/auth/profile", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-  ).data.role;
+    await axios.get(
+      "https://balance-app-blaise-pascal.herokuapp.com/api/auth/profile",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+  ).data;
 };
 
 export const isAuthenticate = async () => {
@@ -31,13 +45,28 @@ export const isAuthenticate = async () => {
     if (!token) {
       return false;
     }
-    await axios.get("https://localhost:49157/api/auth/profile", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    await axios.get(
+      "https://balance-app-blaise-pascal.herokuapp.com/api/auth/profile",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     return true;
   } catch (err) {
     return false;
   }
+};
+
+export const logout = () => {
+  localStorage.removeItem("jwt");
+};
+
+export const setToken = (token) => {
+  localStorage.setItem("jwt", token);
+};
+
+export const getToken = () => {
+  return localStorage.getItem("jwt");
 };

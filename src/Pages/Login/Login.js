@@ -5,7 +5,6 @@ import "./Login.css";
 import profile from "../../assets/img/images.png";
 
 const Login = () => {
-  
   return (
     <div className="main-l">
       <div className="box-l">

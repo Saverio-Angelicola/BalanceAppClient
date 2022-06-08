@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./Statistiques.css";
+import "../Statistiques/Statistiques.css";
 import WeightChart from "../../Components/Chart/Chart";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import { getHealthData } from "../../services/Users";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { getBodyDataById, getHealthData } from "../../services/Users";
 
-const Statistiques = () => {
+const DoctorStats = () => {
   const [weightData, setweightData] = useState(null);
   const [bmiData, setBmiData] = useState(null);
   const [fatData, setfatData] = useState(null);
   const [waterData, setwaterData] = useState(null);
   const [muscleData, setmuscleData] = useState(null);
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Statistiques = () => {
   useEffect(() => {
     const fetchDatas = async () => {
       try {
-        const userData = await getHealthData();
+        const userData = await getBodyDataById(id);
         setmuscleData({
           labels: userData.flatMap((data) => {
             if (data.muscleRate > 0) return timestampToDate(data.createdAt);
@@ -79,8 +80,7 @@ const Statistiques = () => {
             if (data.fatMassRate > 0) {
               return timestampToDate(data.createdAt);
             }
-            return []
-            
+            return [];
           }),
           datasets: [
             {
@@ -89,7 +89,7 @@ const Statistiques = () => {
                 if (data.fatMassRate > 0) {
                   return data.fatMassRate;
                 }
-                return []
+                return [];
               }),
               backgroundColor: [
                 "rgba(75,192,192,1)",
@@ -131,8 +131,7 @@ const Statistiques = () => {
 
         setBmiData({
           labels: userData.flatMap((data) => {
-            if (data.bodyMassIndex > 0)
-              return timestampToDate(data.createdAt);
+            if (data.bodyMassIndex > 0) return timestampToDate(data.createdAt);
             return [];
           }),
           datasets: [
@@ -203,4 +202,4 @@ const Statistiques = () => {
   );
 };
 
-export default Statistiques;
+export default DoctorStats;

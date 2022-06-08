@@ -1,91 +1,52 @@
 import React from "react";
 import "./TabMedecinUserList.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const TabMedecinUserList = () => {
-  const navigate = useNavigate();
-  const users = [
-    {
-      firstname: "toto",
-      lastname: "tutu",
-      role: "Admin",
-      CreatedAt: "10/05/2000",
-    },
-    {
-      firstname: "too",
-      lastname: "tutu",
-      role: "Doctor",
-      CreatedAt: "10/05/2000",
-    },
-    {
-      firstname: "too",
-      lastname: "tutu",
-      role: "Doctor",
-      CreatedAt: "10/05/2000",
-    },
-    {
-      firstname: "too",
-      lastname: "tutu",
-      role: "Doctor",
-      CreatedAt: "10/05/2000",
-    },
-    {
-      firstname: "tto",
-      lastname: "tutu",
-      role: "Admin",
-      CreatedAt: "10/05/2000",
-    },
-    {
-      firstname: "totu",
-      lastname: "tuu",
-      role: "Doctor",
-      CreatedAt: "10/05/2000",
-    },
-  ];
-
-  const getUserList = () => {
-    return users.map((user) => {
+const TabMedecinUserList = ({ users }) => {
+  const getAge = (date) => {
+    const destructDate = date.split("/");
+    var diff =
+      Date.now() -
+      new Date(destructDate[2], destructDate[1], destructDate[0]).getTime();
+    var age = new Date(diff);
+    return Math.abs(age.getUTCFullYear() - 1970);
+  };
+  const getUserList = users.flatMap((user) => {
+    const registerDate = new Date(user.registerDate);
+    if (user.role) {
       return (
-        <tr>
+        <tr key={user.id}>
           <td> {user.firstname} </td>
           <td>{user.lastname}</td>
-          <td>{user.role}</td>
-          <td>{user.age}</td>
-          <td>{user.size}</td>
-          <td>{user.CreatedAt}</td>
-          <td onClick={voirStat} className="btn-block-tm">
-            <button className="voir-button-tm">Voir statistiques</button>
+          <td>{getAge(user.birthDate)} ans</td>
+          <td>{user.height}m</td>
+          <td>{registerDate.toLocaleDateString()}</td>
+          <td className="btn-block-tm">
+            <Link to={`/doctor/stats/${user.id}`} className="voir-button-tm">
+              Voir statistiques
+            </Link>
           </td>
         </tr>
       );
-    });
-  };
-  const handleClick = () => {
-    localStorage.removeItem("jwt");
-    navigate("/");
-  };
-
-  const voirStat = () => {
-    navigate("/stat");
-  };
+    }
+    return [];
+  });
 
   return (
     <div>
-      <button onClick={handleClick}>Déconnexion</button>
+      <h1>Bienvenue dans l'espace de gestion des patients</h1>
       <table>
-        <caption>Bienvenue dans l'espace médecin</caption>
         <thead>
           <tr>
             <th>Nom</th>
             <th>Prénom</th>
-            <th>Rôle</th>
             <th>Age</th>
             <th>Taille</th>
-            <th>Date de création</th>
+            <th>Date d'inscription</th>
             <th> - </th>
           </tr>
         </thead>
-        {getUserList()}
+        <tbody>{getUserList}</tbody>
       </table>
     </div>
   );

@@ -1,0 +1,12 @@
+.main-h {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 300px 0 90px 0;
+    background: url("../../assets/img/Background.jpg");
+    background-size: cover;
+    height: 100%;
+    padding-bottom: 600px;
+    overflow-y: hidden;
+    font-size: 55px;
+  }

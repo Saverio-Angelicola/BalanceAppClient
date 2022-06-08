@@ -1,30 +1,81 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "./App.css";
 import Login from "./Pages/Login/Login.js";
-import Register from "./Pages/Register/Register.js";
-import Modifier from "./Pages/Modifier/Modifier";
 import MedecinUserList from "./Pages/MedecinUserList/MedecinUserList.js";
 import Statistiques from "./Pages//Statistiques/Statistiques.js";
 import AdminUserList from "./Pages/AdminUserList/AdminUserList.js";
+import Layout from "./Components/Layout/Layout";
+import { AuthRequired } from "./routes/AuthRequired";
+import { AuthProvider } from "./contexts/AuthContext";
+import { AdminRequired } from "./routes/AdminRequired";
+import { DoctorRequired } from "./routes/DoctorRequired";
+import UserEdit from "./Pages/UserEdit/UserEdit";
+import Home from "./Pages/Home/Home";
+import NotFound from "./Pages/NotFound/NotFound";
+import AddUser from "./Pages/AddUser/AddUser";
+import Register from "./Pages/Register/Register";
+import DoctorStats from "./Pages/DoctorStats/DoctorStats";
 
 export default function App() {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    localStorage.removeItem("jwt");
-    navigate("/");
-  };
   return (
-    <section> <button onClick={handleClick}>Déconnexion</button>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="register" element={<Register />} />
-      <Route path="admin" element={<AdminUserList />} />
-      <Route path="doctor" element={<MedecinUserList />} />
-      <Route path="modifier" element={<Modifier />} />
-      <Route path="stat/*" element={<Statistiques />} />
-    </Routes>
-    </section>
+    <AuthProvider>
+      <Layout>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/inscription" element={<Register />} />
+          <Route
+            path="stat/*"
+            element={
+              <AuthRequired>
+                <Statistiques />
+              </AuthRequired>
+            }
+          />
+          <Route
+            path="/admin/user/add"
+            element={
+              <AdminRequired>
+                <AddUser />
+              </AdminRequired>
+            }
+          />
+          <Route
+            path="admin"
+            element={
+              <AdminRequired>
+                <AdminUserList />
+              </AdminRequired>
+            }
+          />
+          <Route
+            path="admin/user/edit/:id"
+            element={
+              <AdminRequired>
+                <UserEdit />
+              </AdminRequired>
+            }
+          />
+          <Route
+            path="doctor"
+            element={
+              <DoctorRequired>
+                <MedecinUserList />
+              </DoctorRequired>
+            }
+          />
+          <Route
+            path="doctor/stats/:id/*"
+            element={
+              <DoctorRequired>
+                <DoctorStats />
+              </DoctorRequired>
+            }
+          />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </AuthProvider>
   );
 }

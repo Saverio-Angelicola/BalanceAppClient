@@ -2,6 +2,9 @@
   text-align: center;
   justify-content: center;
   display: flex;
-  /*  background: url("../assets/img/AdminBackground.jpg"); */
+ background: url("../../assets/img/AdminBackground.jpg"); 
   background-size: cover;
+  height: 1000px;
+  padding-bottom: 400px;
 }
+

@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
 import TabAdminUserList from "../../Components/TabAdminUserList/TabAdminUserList";
-import { useNavigate } from "react-router-dom";
 import "./AdminUserList.css";
 import { getAllUsers } from "../../services/Users";
-import { getRole } from "../../services/Auth";
 
 const AdminUserList = () => {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const role = await getRole();
-        if (role !== "Admin") {
-        navigate("/stat");
-        }
         const allUsers = await getAllUsers();
         setUsers(allUsers);
+        setErrorMessage("");
       } catch (err) {
-        navigate("/stat");
+        setErrorMessage("Une erreur s'est produite.");
       }
     };
     fetchUsers();
-  }, [navigate]);
+  },[]);
   return (
     <div className="main-a">
-     { users? <TabAdminUserList users={users}/> : <p>Chargement...</p> }
+      {errorMessage}
+      {users ? <TabAdminUserList users={users} /> : <p>Chargement...</p>}
     </div>
   );
 };

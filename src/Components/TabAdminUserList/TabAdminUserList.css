@@ -7,6 +7,7 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 90%;
+  margin-top: 20px;
 }
 
 td, th /* Mettre une bordure sur les td ET les th */ {
@@ -59,10 +60,9 @@ thead th:nth-child(5) {
   background-color: #ff0000;
   color: white;
   font-size: 20px;
-  margin-right: 5px;
+  margin-left: 5px;
   border: none;
-  padding: auto;
-  text-decoration: none;
+  padding: auto; 
 }
 
 .suppr-button-t {
@@ -71,8 +71,22 @@ thead th:nth-child(5) {
   border-radius: 60px;
   background-color: white;
   color: black;
-  margin-left: 5px;
   font-size: 20px;
+  margin-left: 5px;
   border: none;
   padding: auto;
+  text-decoration: none;
+}
+
+.add-button-t {
+  width: 90%;
+  height: 40px;
+  border-radius: 60px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  margin-left: 850px;
+  border: none;
+  padding: 5px;
+  text-decoration: none;
 }

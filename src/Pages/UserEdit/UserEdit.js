@@ -1,18 +1,18 @@
 import React from "react";
-import "./Modifier.css";
-import FormModifier from "../../Components/FormModifier/FormModifier";
+import "./UserEdit.css";
+import UserEditForm from "../../Components/UserEditForm/UserEditForm";
 
-const Modifier = () => {
+const UserEdit = () => {
   return (
     <div className="main-m">
       <div className="box-m">
         <div className="title-m"></div>
         <div>
-          <FormModifier />
+          <UserEditForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default Modifier;
+export default UserEdit;
