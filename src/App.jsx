@@ -6,7 +6,6 @@ import MedecinUserList from "./Pages/MedecinUserList/MedecinUserList.js";
 import Statistiques from "./Pages//Statistiques/Statistiques.js";
 import AdminUserList from "./Pages/AdminUserList/AdminUserList.js";
 import Layout from "./Components/Layout/Layout";
-import { AuthRequired } from "./routes/AuthRequired";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AdminRequired } from "./routes/AdminRequired";
 import { DoctorRequired } from "./routes/DoctorRequired";
@@ -16,6 +15,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import AddUser from "./Pages/AddUser/AddUser";
 import Register from "./Pages/Register/Register";
 import DoctorStats from "./Pages/DoctorStats/DoctorStats";
+import { UserRequired } from "./routes/UserRequired";
 
 export default function App() {
   return (
@@ -28,9 +28,9 @@ export default function App() {
           <Route
             path="stat/*"
             element={
-              <AuthRequired>
+              <UserRequired>
                 <Statistiques />
-              </AuthRequired>
+              </UserRequired>
             }
           />
           <Route
