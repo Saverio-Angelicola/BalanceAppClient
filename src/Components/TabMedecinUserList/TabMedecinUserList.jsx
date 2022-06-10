@@ -13,7 +13,7 @@ const TabMedecinUserList = ({ users }) => {
   };
   const getUserList = users.flatMap((user) => {
     const registerDate = new Date(user.registerDate);
-    if (user.role !== "Doctor") {
+    if (user.role === "User") {
       return (
         <tr key={user.id}>
           <td> {user.firstname} </td>
