@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       <header>
         <nav>
           <Link to="/">Accueil</Link>
-          {auth.user ? <Link to={"/stat/poids"}>Statistiques</Link> : null}
+          {auth.user && auth.user.role === "User"? <Link to={"/stat/poids"}>Statistiques</Link> : null}
           {auth.user && auth.user.role === "Doctor" ? <Link to={"doctor"}>Gestion des patients</Link> : null}
           {auth.user && auth.user.role === "Admin" ? (
             <Link to={"admin"}>Espace Administrateur</Link>
